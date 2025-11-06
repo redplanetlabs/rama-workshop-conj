@@ -14,16 +14,14 @@
   (let [s (stream-topology topologies "core")]
     (declare-pstate s $$counts {String Long})
     (<<sources s
-      (source> *depot :> {:keys [*k1 *k2]})
+     (source> *depot :> {:keys [*k1 *k2]})
       ;; TODO
-      (|hash *k1)
       (local-transform> [(keypath *k1) (nil->val 0) (term inc)] $$counts)
       (local-select> (keypath *k1) $$counts :> *k1-count)
       (ack-return> *k1-count)
-      (|hash *k2)
       ;; TODO
       (local-transform> [(keypath *k2) (nil->val 0) (term inc)] $$counts)
-      )))
+    )))
 
 (defn launch! []
   (ipc/reset-ipc!)
