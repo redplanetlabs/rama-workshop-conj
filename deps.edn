@@ -1,0 +1,16 @@
+{:mvn/repos
+ {"clojars" {:url "https://repo.clojars.org/"}
+  "rpl" {:url "https://nexus.redplanetlabs.com/repository/maven-public-releases"}}
+ :deps {com.rpl/rama-helpers {:mvn/version "0.10.0"
+                              :exclusions [org.clojure/clojure]}}
+ :paths ["src"]
+ :aliases
+ {:dev {:extra-paths ["test/resources"]}
+  :provided {:jvm-opts   ["-Xss6m" "-Xms6g" "-Xmx6g"]
+             :extra-deps {com.rpl/rama {:mvn/version "1.1.0"}
+                          org.clojure/clojure {:mvn/version "1.12.0"}}}
+  :test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner 
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}
