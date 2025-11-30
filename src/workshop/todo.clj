@@ -18,7 +18,7 @@
   [username key value])
 
 (defrecord ShareList
-  [list-id username to-username])
+  [username list-id to-username])
 
 ;; for *list-depot
 (defrecord CreateList
