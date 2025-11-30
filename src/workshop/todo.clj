@@ -28,7 +28,7 @@
   [list-id username])
 
 (defrecord AddTodo
-  [list-id content])
+  [list-id todo-id content])
 
 (defrecord DeleteTodo
   [list-id todo-id])
